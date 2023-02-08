@@ -4,13 +4,13 @@ Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, 
 */
 
 SELECT *
-FROM coviddeaths
+FROM CovidDeaths
 WHERE continent IS NOT NULL 
 order by 3,4;
 
 -- Select Data to be start with
 SELECT Location, date, total_cases, new_cases, total_deaths, population
-FROM coviddeaths
+FROM CovidDeaths
 WHERE continent IS NOT NULL
 ORDER BY 1,2;
 
@@ -24,7 +24,7 @@ ORDER BY TotalDeathCount DESC;
 -- Total Cases vs Total Deaths
 -- Shows likelihood of dying if get infected with covid in Indonesia
 SELECT Location, date, total_cases,total_deaths, (total_deaths/total_cases)*100 AS DeathPercentage
-FROM coviddeaths
+FROM CovidDeaths
 WHERE location IS 'Indonesia'
 AND continent IS NOT NULL 
 ORDER BY 1,2;
@@ -32,13 +32,13 @@ ORDER BY 1,2;
 -- Total Cases vs Population
 -- Shows what percentage of population infected with Covid in Indonesia
 SELECT location, date, population, total_cases,  (total_cases/population)*100 as PercentPopulationInfected
-FROM coviddeaths
+FROM CovidDeaths
 WHERE location IS 'Indonesia'
 ORDER BY 1,2;
 
 -- Countries with Highest Infection Rate compared to Population in Indonesia
 SELECT Location, Population, MAX(total_cases) AS HighestInfectionCount,  Max((total_cases/population))*100 AS PercentPopulationInfected
-FROM coviddeaths
+FROM CovidDeaths
 WHERE location IS 'Indonesia'
 GROUP BY Location, Population
 ORDER BY PercentPopulationInfected DESC
